@@ -1,12 +1,7 @@
 package com.lightbend.akka.sample.firstactor;
 
 import akka.actor.AbstractActor;
-import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
-import akka.actor.Props;
-import akka.actor.typed.javadsl.Behaviors;
-import com.lightbend.akka.sample.Greeter;
-import com.lightbend.akka.sample.SimplestExample;
 
 public class MonPremierActeur extends AbstractActor {
 

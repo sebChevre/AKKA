@@ -16,10 +16,10 @@ public class AkkaQuickstartTest {
     //#test
     @Test
     public void testGreeterActorSendingOfGreeting() {
-        TestProbe<Greeter.Greeted> testProbe = testKit.createTestProbe();
-        ActorRef<Greeter.Greet> underTest = testKit.spawn(Greeter.create(), "greeter");
-        underTest.tell(new Greeter.Greet("Charles", testProbe.getRef()));
-        testProbe.expectMessage(new Greeter.Greeted("Charles", underTest));
+        TestProbe<Salue> testProbe = testKit.createTestProbe();
+        ActorRef<Salutations> underTest = testKit.spawn(Saluer.create(), "greeter");
+        underTest.tell(new Salutations("Charles", testProbe.getRef()));
+        testProbe.expectMessage(new Salue("Charles", underTest));
     }
     //#test
 }

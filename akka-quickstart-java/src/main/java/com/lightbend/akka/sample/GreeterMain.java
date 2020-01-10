@@ -14,7 +14,7 @@ public class GreeterMain extends AbstractBehavior<GreeterMain.Start> {
         }
     }
 
-    private final ActorRef<Greeter.Greet> greeter;
+    private final ActorRef<Salutations> greeter;
 
     public static Behavior<Start> create() {
         return Behaviors.setup(GreeterMain::new);
@@ -22,21 +22,23 @@ public class GreeterMain extends AbstractBehavior<GreeterMain.Start> {
 
     private GreeterMain(ActorContext<Start> context) {
         super(context);
+
         //#create-actors
-        greeter = context.spawn(Greeter.create(), "greeter");
+        greeter = context.spawn(Saluer.create(), "greeter");
         //#create-actors
     }
 
     @Override
     public Receive<Start> createReceive() {
+
         return newReceiveBuilder().onMessage(Start.class, this::onStart).build();
     }
 
     private Behavior<Start> onStart(Start command) {
         //#create-actors
-        ActorRef<Greeter.Greeted> replyTo =
+        ActorRef<Salue> replyTo =
                 getContext().spawn(GreeterBot.create(3), command.name);
-        greeter.tell(new Greeter.Greet(command.name, replyTo));
+        greeter.tell(new Salutations(command.name, replyTo));
         //#create-actors
         return this;
     }
